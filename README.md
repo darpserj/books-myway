@@ -1,70 +1,31 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Welcome to my book list app!
 
-## Available Scripts
+@Todo
 
-In the project directory, you can run:
+## App diagram
 
-### `npm start`
+## Project Notes
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The following paragraphs are an attempt to explain the architecture of the app. The main purpose of this is to facilitate my understanding of what I'm building.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### App.js 
 
-### `npm test`
+The first piece of state in this app is, of course, the books. Each book is an object and gets stored inside the books array. This state is used throughout all child components so it makes sense for it to be placed here, inside the main component.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The createBook function is responsible for adding objects inside the books array. The reason why I use destructuring instead of just pushing objects into the array is because of an optimization that react does behind the scenes. Basically, by using `useState([])`, you create a reference in memory to the 'books' array. If you were to just push objects into that array, you wouldn't see anything on the screen because react thinks that the array hasn't changed at all. Next, we need to pass this function as a prop to the BookCreate Component. *Continue to the BookCreate component.*
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### BookCreate.js 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The next piece of state that we have in this app is the book's title. This title gets updated every single time a user changes the content of the text input (notice `onChange={handleChange}`). Because react re-renders the component every time it detects a change, we need to set the value of the input to be the title. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Whenever a user submits a book, we need to do 3 things:
+1. Prevent the default behaviour of the form. (By default, form submission trigger a post request.)
+2. 
 
-### `npm run eject`
+### BookList.js
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### BookShow.js
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### BookEdit.js
